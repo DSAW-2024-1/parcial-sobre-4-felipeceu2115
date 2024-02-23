@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <link rel="stylesheet" type="text/css" href = "./style/styles.css">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
   <title>Frontend Mentor | Newsletter sign-up form with success message</title>
@@ -15,38 +15,93 @@
   </style>
 </head>
 <body>
+  <div id = "main">
+    <div class = "caja left">
+      <div>
+        <h1>Stay updated!</h1>
+        <p>Join 60,000+ product managers receiving monthly updates on:</p>
 
-  <!-- Sign-up form start -->
+        <ul class = "lista">
+          <li>Product discovery and building what matters</li>
+          <li>Measuring to ensure updates are a success</li>
+          <li> And much more!</li>
+        </ul>
+      </div>
+      
+      
 
-  Stay updated!
+      <div>
+        <div class="notifications">
+          <p class="email">Email address</p>
+          <p class="email error">Valid email required</p>
+        </div>
+        
 
-  Join 60,000+ product managers receiving monthly updates on:
+        <input type="text" id="inpEmail" placeholder = "email@company.com">
 
-  Product discovery and building what matters
-  Measuring to ensure updates are a success
-  And much more!
+        <button id="btnHideMain" onclick="validarYCambiarDiv()">Subscribe to monthly newsletter</button>
+      </div>
+      
+    </div>
 
-  Email address
-  email@company.com
+    <div class = "caja img-conteiner">
+      <img src="./assets/images/illustration-sign-up-desktop.svg" alt="imagen" />
+    </div>
 
-  Subscribe to monthly newsletter
-
-  <!-- Sign-up form end -->
-
-  <!-- Success message start -->
-
-  Thanks for subscribing!
-
-  A confirmation email has been sent to ash@loremcompany.com. 
-  Please open it and click the button inside to confirm your subscription.
-
-  Dismiss message
-
-  <!-- Success message end -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
   </div>
+
+
+  <div id="alert">
+    <div class="img-alert">
+      <img src="./assets/images/icon-success.svg" alt="listo">
+    </div>
+
+    <div> 
+      <h1>Thanks for subscribing!</h1>
+      <p>A confirmation email has been sent to <span id="emailSpan"></span>. 
+        Please open it and click the button inside to confirm your subscription.
+      </p>
+    </div>
+
+    <button class="btnHideAlert" onclick="hideAlert()">Dismiss message</button>
+  </div>
+ 
+
+  <script >
+    function hideDive(){
+      document.getElementById("alert").style.display = "grid"
+      document.getElementById("main").style.display = "none";
+    }
+
+    function hideAlert(){
+      document.getElementById("alert").style.display = "none"
+      document.getElementById("main").style.display = "grid";
+    }
+   
+    function capturarEmail(){
+      var mail = document.getElementById("inpEmail").value;
+      var spanEmail = document.getElementById("emailSpan"); 
+      spanEmail.textContent = mail;
+      
+    }
+
+    function validarYCambiarDiv() {
+    var mail = document.getElementById("inpEmail").value;
+    var emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail);
+    if (emailValido) {
+      hideDive(); 
+      capturarEmail(); 
+      
+    } else {
+      inpEmail.style.borderColor = "red";
+      document.getElementsByClassName("error").style.display = "grid";
+      
+      
+    }
+  }
+
+    
+
+  </script>
 </body>
 </html>
